@@ -1,0 +1,23 @@
+<launch>
+
+  <env name="ROS_MASTER_URI" value="http://192.168.1.200:11311"/>
+  
+
+  <group> <!-- BASE STATION -->
+        
+    <node name="gui_manager" pkg="base_station" type="gui_manager.py" output="screen" />
+    <node name="camera_client" pkg="base_station" type="camera_client.py" output="screen" />
+  
+  </group>
+  
+  
+  <group> <!--    ROVER     -->  
+      
+    <machine name="sandstorm" user="nova" address="192.168.1.199" default="true" env-loader="/home/nova/rover_ws/devel/env.sh"/>
+    
+    <include file="$(find core_rover)/launch/camera.launch"/> 
+    
+  </group>
+  
+  
+</launch>
