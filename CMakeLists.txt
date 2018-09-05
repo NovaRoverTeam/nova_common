@@ -52,6 +52,7 @@ add_message_files(
   FILES
   RadioStatus.msg
   CameraStatus.msg
+  DriveCmd.msg
 )
 
 ## Generate services in the 'srv' folder
