@@ -1,0 +1,15 @@
+<launch>
+
+  <!-- <env name="ROS_MASTER_URI" value="http://192.168.1.200:11311"/> -->
+
+  <!--   Starting point for all rover operations   -->
+  <node name="gui_manager" pkg="base_station" type="gui_manager.py" output="screen"/>
+
+  <include file="$(find nova_common)/launch/radio.launch"> 
+    <arg name="pkg_name" value="base_station"/>
+  </include>
+  
+  <node name="camera_client" pkg="base_station" type="camera_client.py" output="screen" />
+  <node name="input" pkg="base_station" type="input" output="screen"/>
+
+</launch>

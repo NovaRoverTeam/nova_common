@@ -93,7 +93,9 @@ def main():
   rospy.init_node('radio_monitor')
   rate = rospy.Rate(loop_hz)
   
-  pub = rospy.Publisher('radio_status', RadioStatus, queue_size=1)
+  pkg_name = rospy.get_param("~pkg_name") # Get package name for topic
+  topic = '/' + pkg_name + '/radio_status'
+  pub = rospy.Publisher(topic , RadioStatus, queue_size=1)
   
   # Get radio authentication info from launch file
   hosts = [rospy.get_param("~radio_0/host"), rospy.get_param("~radio_1/host")]
@@ -117,7 +119,7 @@ def main():
     for i in range(2):
       # If ssh disconnected, reconnect and give error msg
       if not is_connected(ssh[i]): 
-        rospy.loginfo("SSH client cannot connect to radio " + str(i) + ".")
+        #rospy.loginfo("SSH client cannot connect to radio " + str(i) + ".")
         ssh[i] = ssh_connect(hosts[i], users[i], pws[i], i)
         
         msg = RadioStatus()

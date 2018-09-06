@@ -1,0 +1,7 @@
+<launch>
+
+  <arg name="Vehicle" default="Simulator"/>
+
+  <include file="$(find core_rover)/launch/camera.launch"/> 
+
+</launch>

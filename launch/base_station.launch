@@ -1,0 +1,9 @@
+<launch>
+
+    <arg name="Vehicle" default="Simulator"/>
+
+    <node name="state_manager" pkg="base_station" type="state_manager.py" output="screen">
+      <param name="Vehicle" value="$(arg Vehicle)"/>
+    </node>
+
+</launch>

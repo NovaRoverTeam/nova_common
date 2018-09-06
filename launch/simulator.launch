@@ -1,0 +1,13 @@
+<launch>
+
+  <!--    Common base station launch file     -->  
+  <include file="$(find nova_common)/launch/base_station.launch">
+    <arg name="Vehicle" value="Simulator"/>
+  </include>
+    
+  <!--    Common rover launch file     -->  
+  <include file="$(find nova_common)/launch/core_rover.launch">
+    <arg name="Vehicle" value="Simulator"/>
+  </include>
+    
+</launch>
