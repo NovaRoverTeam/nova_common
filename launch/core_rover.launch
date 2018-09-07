@@ -3,5 +3,7 @@
   <arg name="Vehicle" default="Simulator"/>
 
   <include file="$(find core_rover)/launch/camera.launch"/> 
+  
+  <node name="rover_manager" pkg="core_rover" type="rover_manager.py" output="screen"/>
 
 </launch>
