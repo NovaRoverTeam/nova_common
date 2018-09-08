@@ -1,0 +1,9 @@
+
+float64 latitude
+float64 longitude
+
+---
+
+bool success   
+string message 
+

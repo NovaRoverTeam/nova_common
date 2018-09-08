@@ -53,6 +53,7 @@ add_message_files(
   RadioStatus.msg
   CameraStatus.msg
   DriveCmd.msg
+  AutoStatus.msg
 )
 
 ## Generate services in the 'srv' folder
@@ -60,6 +61,7 @@ add_service_files(
   FILES
   ToggleStream.srv
   ChangeState.srv
+  StartAuto.srv
 )
 
 ## Generate actions in the 'action' folder
