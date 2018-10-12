@@ -1,0 +1,15 @@
+<launch>
+
+  <!-- <env name="ROS_MASTER_URI" value="http://192.168.1.200:11311"/> -->
+
+  <!--   Starting point for all rover operations   -->
+  <node name="gui_manager" pkg="base_station" type="gui_manager.py" output="screen" required="true">
+    <param name="def_RPM_limit"   value="0.1"/>
+    <param name="def_steer_limit" value="0.6"/>
+  </node>
+
+  <node name="driver" pkg="core_rover" type="driver" output="screen" />
+  <node name="RawCtrl_to_DriveCmd" pkg="base_station" type="RawCtrl_to_DriveCmd.py" output="screen"/>
+  <node name="input" pkg="base_station" type="input" output="screen"/>
+
+</launch>
