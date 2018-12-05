@@ -9,5 +9,8 @@
   <include file="$(find nova_common)/launch/core_rover.launch">
     <arg name="Vehicle" value="Simulator"/>
   </include>
+
+  <node name="auto" pkg="core_rover" type="auto.py" output="screen" />
+  <node name="sim_init" pkg="core_rover" type="sim_init" output="screen" />
     
 </launch>
