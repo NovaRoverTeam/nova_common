@@ -2,9 +2,11 @@
 
   <arg name="pkg_name" default="base_station"/>
 
-  <!-- Configure your radio authentication info as needed -->
-  <node name="radio_monitor" pkg="nova_common" type="radio_monitor.py" output="screen">  
-    <param name="pkg_name" value="$(arg pkg_name)"/>
+  <!-- Radio Monitor node -->    
+  <node name="radio_monitor_$(arg pkg_name)" pkg="nova_common" type="radio_monitor.py" 
+    output="screen">  
+    
+    <!-- Configure your radio authentication info as needed -->
     <rosparam>
         radio_0:
           host: '192.168.1.201'
@@ -16,6 +18,8 @@
           user: 'ubnt'
           pw:   'rover'  
     </rosparam>    
+
+    <param name="pkg_name" value="$(arg pkg_name)"/>
   </node>
 
 </launch>

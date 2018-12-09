@@ -2,7 +2,8 @@
 
     <arg name="Vehicle" default="Simulator"/>
 
-    <node name="state_manager" pkg="base_station" type="state_manager.py" output="screen">
+    <!-- Base Sync node -->
+    <node name="base_sync" pkg="base_station" type="base_sync.py" output="screen">
       <param name="Vehicle" value="$(arg Vehicle)"/>
     </node>
 

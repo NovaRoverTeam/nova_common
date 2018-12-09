@@ -2,9 +2,18 @@
 
   <arg name="Vehicle" default="Simulator"/>
 
-  <include file="$(find core_rover)/launch/camera.launch"/> 
+  <!-- Camera Server -->
+  <include file="$(find core_rover)/launch/camera_server.launch"/> 
+
+  <!-- Radio Monitor -->
+  <include file="$(find nova_common)/launch/radio.launch"> 
+    <arg name="pkg_name" value="core_rover"/>
+  </include>
   
-  <node name="rover_manager" pkg="core_rover" type="rover_manager.py" output="screen"/>
+  <!-- Rover Sync node -->
+  <node name="rover_sync" pkg="core_rover" type="rover_sync.py" output="screen"/>
+
+  <!-- Driver node-->
   <node name="driver" pkg="core_rover" type="driver" output="screen" />
 
 </launch>

@@ -9,19 +9,18 @@ import signal
 import warnings # Suppressing annoying warning in paramiko
 warnings.filterwarnings("ignore", category=FutureWarning)
 
+from radio_sm import RadioStateMachine
 from nova_common.msg import RadioStatus # Import custom msg
 
 loop_hz = 1      # ROS loop rate in Hz, coupled with tmout time below
 tmout = 0.5      # Timeout (in seconds) for ssh channel
 min_signal = -96 # Minimum signal strength, dB
 
-
 #--**--..--**--..--**--..--**--..--**--..--**--..--**--..--**--..--**--
-# ssh_connect():
-#
+# sshConnect():
 #    Connect an SSH client to the SSH server running on the radio.
 #--..--**--..--**--..--**--..--**--..--**--..--**--..--**--..--**--..--
-def ssh_connect(host, user, pw, i):
+def sshConnect(host, user, pw, i):
   ssh = paramiko.SSHClient()
   ssh.load_system_host_keys()
   ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -33,27 +32,23 @@ def ssh_connect(host, user, pw, i):
     pass
     
   return ssh
-  
 
 #--**--..--**--..--**--..--**--..--**--..--**--..--**--..--**--..--**--
-# is_connected():
-#
+# isConnected():
 #    Check if the current SSH connection is active.
 #--..--**--..--**--..--**--..--**--..--**--..--**--..--**--..--**--..--  
-def is_connected(ssh):  
+def isConnected(ssh):  
   try:
     ssh.exec_command('ls', timeout=tmout)
     return True    
   except:
     return False
-    
-    
+     
 #--**--..--**--..--**--..--**--..--**--..--**--..--**--..--**--..--**--
-# get_signal():
-#
+# getSignal():
 #    Read the signal strength from the radio.
 #--..--**--..--**--..--**--..--**--..--**--..--**--..--**--..--**--..--  
-def get_signal(ssh):   
+def getSignal(ssh):   
   try:
     # Call mca-status to get radio information
     stdin, stdout, stderr = ssh.exec_command("mca-status | grep signal", timeout=tmout)
@@ -65,13 +60,11 @@ def get_signal(ssh):
   except:
     return None
 
-
 #--**--..--**--..--**--..--**--..--**--..--**--..--**--..--**--..--**--
-# get_n_wlan_cons():
-#
+# getNumWlanCons():
 #    Read the number of devices paired to the radio.
 #--..--**--..--**--..--**--..--**--..--**--..--**--..--**--..--**--..--  
-def get_n_wlan_cons(ssh):   
+def getNumWlanCons(ssh):   
   try:
     # Call mca-status to get radio information
     stdin, stdout, stderr = ssh.exec_command("mca-status | grep wlanConnections", timeout=tmout)
@@ -82,14 +75,29 @@ def get_n_wlan_cons(ssh):
     
   except:
     return None
+  
+#--**--..--**--..--**--..--**--..--**--..--**--..--**--..--**--..--**--
+# updateStateMachine():
+#   Update the state machine with the current radio status.
+#--..--**--..--**--..--**--..--**--..--**--..--**--..--**--..--**--..--  
+def updateStateMachine(radio_sm, radio_msgs):
 
+  #rospy.loginfo("5 is " + str(radio_msgs[0]) + " and 9 is " + str(radio_msgs[1]))
+
+  if   radio_msgs[0] is False and radio_msgs[1] is False:
+    radio_sm.downBoth()
+  elif radio_msgs[0] is False and radio_msgs[1] is True:
+    radio_sm.up9()
+  elif radio_msgs[0] is True and radio_msgs[1] is False:
+    radio_sm.up5()
+  elif radio_msgs[0] is True and radio_msgs[1] is True:
+    radio_sm.upBoth()
 
 #--**--..--**--..--**--..--**--..--**--..--**--..--**--..--**--..--**--
 # main():
-#
-#    Main function.
+#   Main function.
 #--..--**--..--**--..--**--..--**--..--**--..--**--..--**--..--**--..-- 
-def main():
+def main():   
   rospy.init_node('radio_monitor')
   rate = rospy.Rate(loop_hz)
   
@@ -104,7 +112,7 @@ def main():
     
   ssh = [] # Connect to both radios via ssh
   for i in range(2):
-    ssh.append(ssh_connect(hosts[i], users[i], pws[i], i))
+    ssh.append(sshConnect(hosts[i], users[i], pws[i], i))
   
   # Set up sigint handler to close ssh sessions when Ctrl+C pressed
   def signal_handler(sig, frame):
@@ -113,37 +121,48 @@ def main():
     rospy.signal_shutdown("SIGINT")
     
   signal.signal(signal.SIGINT, signal_handler) # Register sigint handler
+
+  radio_sm = RadioStateMachine(pkg_name)
   
   while not rospy.is_shutdown():
+
+    radio_msgs = [] # Store the status of the 2 radios
   
     for i in range(2):
       # If ssh disconnected, reconnect and give error msg
-      if not is_connected(ssh[i]): 
+      if not isConnected(ssh[i]): 
         #rospy.loginfo("SSH client cannot connect to radio " + str(i) + ".")
-        ssh[i] = ssh_connect(hosts[i], users[i], pws[i], i)
+        ssh[i] = sshConnect(hosts[i], users[i], pws[i], i)
         
         msg = RadioStatus()
         msg.radio_id = i
         msg.signal = min_signal
+
         pub.publish(msg)    
+        radio_msgs.append(False)
 	      
       # If ssh all gucci, grab and publish radio status information
       else:
-        signal_strength = get_signal(ssh[i])
-        n_wlan_cons = get_n_wlan_cons(ssh[i])
+        signal_strength = getSignal(ssh[i])
+        n_wlan_cons = getNumWlanCons(ssh[i])
         
         if signal_strength is not None and n_wlan_cons is not None:
-	        msg = RadioStatus()
-	        msg.radio_id = i
-	        msg.n_wlan_cons = n_wlan_cons
-	        msg.signal = signal_strength
-	        msg.ssh_active = True
-	        pub.publish(msg) 
-        else:
-          rospy.loginfo("SSH timeout on radio " + str(i) + ".")      
-    
-    rate.sleep()
+          msg = RadioStatus()
+          msg.radio_id = i
+          msg.n_wlan_cons = n_wlan_cons
+          msg.signal = signal_strength
+          msg.ssh_active = True
 
+          pub.publish(msg)
+          radio_msgs.append((n_wlan_cons>0) and msg.ssh_active)
+
+        else:
+          rospy.loginfo("SSH timeout on radio " + str(i) + ".")  
+
+    # Update state machine with radio status
+    updateStateMachine(radio_sm, radio_msgs)
+
+    rate.sleep()
 
 #--**--..--**--..--**--..--**--..--**--..--**--..--**--..--**--..--**--
 # Initialiser.
@@ -153,4 +172,3 @@ if __name__ == '__main__':
     main()
   except rospy.ROSInterruptException:
     pass
-
