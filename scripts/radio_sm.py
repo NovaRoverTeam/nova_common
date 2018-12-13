@@ -42,7 +42,7 @@ class RadioStateMachine():
             { 'trigger': 'downBoth', 'source': '9_Loss', 'dest': 'Full_Loss', 
                 'after':['fullLoss', 'camShutdown']},
             { 'trigger': 'upBoth',   'source': '9_Loss', 'dest': 'Connected', 
-                'after':['loss9', 'camRestore']},
+                'after':['connected', 'camRestore']},
             { 'trigger': 'up9',      'source': '9_Loss', 'dest': '5_Loss', 
                 'after':['loss5', 'camBackup']}
         ]
@@ -56,9 +56,7 @@ class RadioStateMachine():
         self.setConnectivity('Connected')
 
     def setConnectivity(self, state):
-        # TODO uncomment this - it's just for testing the system without radios
-        #rospy.set_param('/' + self.pkg_name + '/Connectivity', state)
-        rospy.set_param('/' + self.pkg_name + '/Connectivity', 'Connected')
+        rospy.set_param('/' + self.pkg_name + '/Connectivity', state)
 
     def updateGuiRadioState(self, message):
         # TODO make service call to GUI to display message re: state change
