@@ -54,6 +54,7 @@ add_message_files(
   CameraStatus.msg
   DriveCmd.msg
   AutoStatus.msg
+  GimbalCmd.msg
 )
 
 ## Generate services in the 'srv' folder
