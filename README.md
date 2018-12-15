@@ -1,7 +1,16 @@
 # nova_common
 Provides common messages, services and utilities for the rover and base station.
 
+## Dependencies
+
+- Python module *transitions*:
+```
+pip install transitions
+```
+
 ## Multi-Machine Launch Files
+
+*NOTE: Currently looking at replacing this multi-machine system with the multimaster_fkie package.*
 
 The file system.launch requires connection to the rover computer in order to launch nodes remotely. To do this, an ssh connection must be established to the other computer by roslaunch. In order for this to be automated by roslaunch, you must generate an ssh key pair on the rover, and add its public key to the ~/.ssh/authorized_keys file on the base station computer. Also, make sure the rover computer has the base station computer's hostname paired to its static IP address in the rover's /etc/hosts file, and vice versa for the base station computer's /etc/hosts file.
 
