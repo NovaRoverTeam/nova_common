@@ -11,7 +11,7 @@
   </include>
 
   <node name="navigation" pkg="core_rover" type="navigation.py" output="screen" />
-  <node name="auto2" pkg="core_rover" type="auto.py" output="screen" />
+  <node name="auto2" pkg="core_rover" type="auto2.py" output="screen" />
   <node name="sim_init" pkg="core_rover" type="sim_init" output="screen" />
     
 </launch>
