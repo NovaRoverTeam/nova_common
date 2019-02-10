@@ -1,7 +1,7 @@
 <launch>
 
   <arg name="Vehicle" default="Simulator"/>
-
+  
   <!-- Camera Server -->
   <include file="$(find core_rover)/launch/camera_server.launch"/> 
 
@@ -17,14 +17,14 @@
   <node name="driver" pkg="core_rover" type="driver" output="screen" />
 
   <!-- Master Discovery node -->
-  <node name="master_discovery_base" pkg="master_discovery_fkie" type="master_discovery" output="screen">
+  <node name="master_discovery_rover" pkg="master_discovery_fkie" type="master_discovery" output="screen">
     <rosparam param="robot_hosts">[thomas-Normandy]</rosparam>
     <param name="send_mcast" value="False"/>
   </node>
 
   <!-- Master Sync node -->
-  <node name="master_sync" pkg="master_sync_fkie" type="master_sync" output="screen">
-    <rosparam param="sync_topics">['/test/topic']</rosparam>
+  <node name="master_sync_rover" pkg="master_sync_fkie" type="master_sync" output="screen">
+     <rosparam param="sync_topics">['/test/topic','/core_rover/driver/drive_cmd']</rosparam>
   </node>
 
 </launch>
