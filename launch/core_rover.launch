@@ -24,7 +24,7 @@
 
   <!-- Master Sync node -->
   <node name="master_sync_rover" pkg="master_sync_fkie" type="master_sync" output="screen">
-     <rosparam param="sync_topics">['/test/topic','/core_rover/driver/drive_cmd']</rosparam>
+     <rosparam param="sync_topics">['/test/topic','/core_rover/driver/drive_cmd', '/core_rover/req_change_mode', '/core_rover/req_change_mission']</rosparam>
   </node>
 
 </launch>
