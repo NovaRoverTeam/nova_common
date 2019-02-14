@@ -1,6 +1,6 @@
 <launch>
 
-  <arg name="Vehicle" default="Simulator"/>
+  <arg name="Vehicle" default="JDB"/>
   
   <!-- Camera Server -->
   <include file="$(find core_rover)/launch/camera_server.launch"/> 
@@ -15,6 +15,7 @@
 
   <!-- Driver node-->
   <node name="driver" pkg="core_rover" type="driver" output="screen" />
+    <arg name="Vehicle" value="$(arg Vehicle)"/>
 
   <!-- Master Discovery node -->
   <node name="master_discovery_rover" pkg="master_discovery_fkie" type="master_discovery" output="screen">

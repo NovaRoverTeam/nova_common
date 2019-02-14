@@ -1,6 +1,6 @@
 <launch>
 
-    <arg name="Vehicle" default="Simulator"/>
+    <arg name="Vehicle" default="JDB"/>
 
     <!-- Base Sync node -->
     <node name="base_sync" pkg="base_station" type="base_sync.py" output="screen">
