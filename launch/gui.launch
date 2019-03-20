@@ -17,6 +17,12 @@
   <node name="camera_client" pkg="base_station" type="camera_client.py" output="screen" />
 
   <!-- Input Node (xbox controller interface) -->
-  <node name="input" pkg="base_station" type="input" output="screen"/>
+  <node name="xbox_input" pkg="base_station" type="xbox_input" output="screen"/>
+  
+  <!-- Input Node (right joystick) -->
+  <node name="rjs_input" pkg="base_station" type="rjs_input" output="screen"/>
+  
+  <!-- Input Node (left joystick) -->
+  <node name="ljs_input" pkg="base_station" type="ljs_input" output="screen"/>
   
 </launch>
