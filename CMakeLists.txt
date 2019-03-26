@@ -56,6 +56,7 @@ add_message_files(
   AutoStatus.msg
   GimbalCmd.msg
   IMU.msg
+  Gps.msg
 )
 
 ## Generate services in the 'srv' folder
