@@ -15,8 +15,13 @@
 
   <!-- Driver node -->
   <node name="driver" pkg="core_rover" type="driver" output="screen" />
-  
 
+  <!-- GPD node -->
+  <node name="gps" pkg="core_rover" type="gps_node" output="screen" />
+
+  <!-- IMU node -->
+  <node name="NovaAhrs" pkg="core_rover" type="NovaAhrs" output="screen" />
+  
   <!-- Master Discovery node -->
   <node name="master_discovery_rover" pkg="master_discovery_fkie" type="master_discovery" output="screen">
     <rosparam param="robot_hosts">[thomas-Normandy]</rosparam>
