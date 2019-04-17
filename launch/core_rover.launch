@@ -16,11 +16,11 @@
   <!-- Driver node -->
   <node name="driver" pkg="core_rover" type="driver" output="screen" />
 
-  <!-- GPD node -->
+  <!-- GPS node -->
   <node name="gps" pkg="core_rover" type="gps_node" output="screen" />
 
-  <!-- IMU node -->
-  <node name="NovaAhrs" pkg="core_rover" type="NovaAhrs" output="screen" />
+  <!-- IMU launch -->
+  <include file="$(find core_rover)/launch/rtimulib_ros.launch"/>
   
   <!-- Master Discovery node -->
   <node name="master_discovery_rover" pkg="master_discovery_fkie" type="master_discovery" output="screen">
