@@ -55,8 +55,7 @@ add_message_files(
   DriveCmd.msg
   AutoStatus.msg
   GimbalCmd.msg
-  IMU.msg
-  Gps.msg
+  RawCtrl.msg
 )
 
 ## Generate services in the 'srv' folder

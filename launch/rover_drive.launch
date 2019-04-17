@@ -1,0 +1,14 @@
+<launch>
+
+    <arg name="Vehicle" default="JDB"/>
+
+   <!-- Input Node (xbox controller interface) -->
+  <node name="xbox_input" pkg="base_station" type="xbox_input" output="screen"/>
+
+    <!-- Base Sync node -->
+    <node name="simple_base_sync" pkg="base_station" type="simple_base_sync.py" output="screen"> </node>
+
+  <!-- Driver node -->
+  <node name="driver" pkg="core_rover" type="driver" output="screen" />
+
+</launch>
