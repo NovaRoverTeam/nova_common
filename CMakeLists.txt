@@ -64,6 +64,7 @@ add_service_files(
   FILES
   ToggleStream.srv
   ChangeMode.srv
+  ChangeMission.srv
   StartAuto.srv
 )
 
