@@ -5,7 +5,7 @@
   <!-- Launch the GUI -->
   <node name="gui_ros" pkg="base_station" type="gui_backend.py" output="screen" required="true">
     <param name="def_rpm_limit"   value="0.1"/>
-    <param name="def_steer_limit" value="0.6"/>
+    <param name="def_steer_limit" value="0.3"/>
   </node>
 
   <!-- Radio Monitor -->
