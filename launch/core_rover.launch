@@ -16,12 +16,7 @@
   <!-- Driver node -->
   <node name="driver" pkg="core_rover" type="driver" output="screen" />
 
-  <!-- GPS node -->
-  <node name="gps" pkg="core_rover" type="gps_node" output="screen" />
-
-  <!-- IMU launch -->
-  <include file="$(find core_rover)/launch/rtimulib_ros.launch"/>
-  
+ 
   <!-- Master Discovery node -->
   <node name="master_discovery_rover" pkg="master_discovery_fkie" type="master_discovery" output="screen">
     <rosparam param="robot_hosts">[thomas-Normandy]</rosparam>
@@ -30,7 +25,7 @@
 
   <!-- Master Sync node -->
   <node name="master_sync_rover" pkg="master_sync_fkie" type="master_sync" output="screen">
-     <rosparam param="sync_topics">['/test/topic', '/core_rover/driver/drive_cmd', '/core_rover/req_change_mode', '/core_rover/req_change_mission', '/core_rover/connect_stream', '/base_station/gimbal_cmd', '/core_rover/camera_status', '/base_station/rjs_raw_ctrl', '/base_station/ljs_raw_ctrl', '/base_station/drill_cmd']</rosparam>
+     <rosparam param="sync_topics">['/test/topic', '/heartbeat', '/core_rover/driver/drive_cmd', '/core_rover/req_change_mode', '/core_rover/req_change_mission', '/core_rover/connect_stream', '/base_station/gimbal_cmd', '/core_rover/camera_status', '/base_station/rjs_raw_ctrl', '/base_station/ljs_raw_ctrl', '/base_station/drill_cmd']</rosparam>
   </node>
 
 </launch>
