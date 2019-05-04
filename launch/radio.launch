@@ -14,7 +14,7 @@
           pw:   'rover'  
           
         radio_1:  
-          host: '127.0.0.1'
+          host: '192.168.1.215'
           user: 'ubnt'
           pw:   'rover'  
     </rosparam>    
