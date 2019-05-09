@@ -2,5 +2,6 @@
 
   <!-- Arm node -->
   <node name="arm" pkg="core_rover" type="arm.py"/>
+  <node name="sensors_pub" pkg="core_rover" type="sensors_pub.py" />
 
 </launch>

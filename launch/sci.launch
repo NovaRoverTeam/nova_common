@@ -2,5 +2,6 @@
 
   <!-- Drill node -->
   <node name="drill" pkg="core_rover" type="drill" />
+  <node name="sensors_pub" pkg="core_rover" type="sensors_pub.py" />
 
 </launch>
