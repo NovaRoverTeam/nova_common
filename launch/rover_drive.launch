@@ -1,7 +1,5 @@
 <launch>
 
-    <arg name="Vehicle" default="JDB"/>
-
    <!-- Input Node (xbox controller interface) -->
   <node name="xbox_input" pkg="base_station" type="xbox_input" output="screen"/>
 

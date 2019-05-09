@@ -13,9 +13,6 @@
     <arg name="pkg_name" value="base_station"/>
   </include>
 
-  <!-- Camera Client -->
-  <node name="camera_client" pkg="base_station" type="camera_client.py" output="screen" />
-
   <!-- Input Node (xbox controller interface) -->
   <node name="xbox_input" pkg="base_station" type="xbox_input" output="screen"/>
   

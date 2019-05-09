@@ -1,11 +1,6 @@
 <launch>
 
-<arg name="Vehicle" default="JDB"/>
-
   <!-- Arm node -->
-  <node name="arm" pkg="core_rover" type="arm.py" output="screen" launch-prefix="xterm -e" />
-
-  <!-- Driver node -->
-  <node name="driver" pkg="core_rover" type="driver" output="screen" launch-prefix="xterm -e" />
+  <node name="arm" pkg="core_rover" type="arm.py"/>
 
 </launch>

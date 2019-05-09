@@ -1,6 +1,0 @@
-<launch>
-
- <node name="navigation" pkg="core_rover" type="navigation.py" output="screen" />
- <node name="auto" pkg="core_rover" type="auto.py" output="screen" />
-
-</launch>

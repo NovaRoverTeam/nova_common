@@ -9,12 +9,12 @@
     <!-- Configure your radio authentication info as needed -->
     <rosparam>
         radio_0:
-          host: '192.168.1.201'
+          host: '192.168.1.215'
           user: 'ubnt'
           pw:   'rover'  
           
         radio_1:  
-          host: '192.168.1.215'
+          host: '192.168.1.201'
           user: 'ubnt'
           pw:   'rover'  
     </rosparam>    

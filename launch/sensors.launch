@@ -1,10 +1,10 @@
 <launch> 
 
  <!-- GPS node -->
-  <node name="gps" pkg="core_rover" type="gps_node" output="screen" launch-prefix="xterm -e"  />
+  <node name="gps" pkg="core_rover" type="gps_node" output="screen"/>
 
   <!-- IMU launch -->
-  <include file="$(find core_rover)/launch/rtimulib_ros.launch "/>
+  <include file="$(find core_rover)/launch/rtimulib_ros.launch"/> 
   
 
 </launch>
