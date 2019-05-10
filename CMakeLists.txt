@@ -57,6 +57,7 @@ add_message_files(
   GimbalCmd.msg
   RawCtrl.msg
   RPY.msg
+  ApproxCompass.msg
 )
 
 ## Generate services in the 'srv' folder
