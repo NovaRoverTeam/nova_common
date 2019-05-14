@@ -3,18 +3,18 @@
     <arg name="Vehicle" default="JDB"/>
 
     <!-- Base Sync node -->
-    <node name="base_sync" pkg="base_station" type="base_sync.py" output="screen">
+    <node name="base_sync" pkg="base_station" type="base_sync.py" >
       <param name="Vehicle" value="$(arg Vehicle)"/>
     </node>
 
     <!-- Master Discovery node -->
-    <node name="master_discovery_base" pkg="master_discovery_fkie" type="master_discovery" output="screen">
+    <node name="master_discovery_base" pkg="master_discovery_fkie" type="master_discovery" >
       <rosparam param="robot_hosts">[tegra-ubuntu]</rosparam>
       <param name="send_mcast" value="False"/>
     </node>
 
     <!-- Master Sync node -->
-    <node name="master_sync_base" pkg="master_sync_fkie" type="master_sync" output="screen">
+    <node name="master_sync_base" pkg="master_sync_fkie" type="master_sync" >
       <rosparam param="sync_topics">['/test/topic', '/heartbeat', '/core_rover/driver/drive_cmd', '/core_rover/req_change_mode', '/core_rover/req_change_mission', '/core_rover/connect_stream', '/base_station/gimbal_cmd', '/core_rover/camera_status', '/base_station/rjs_raw_ctrl', '/base_station/ljs_raw_ctrl', '/base_station/drill_cmd']</rosparam>
     </node>
 

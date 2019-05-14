@@ -3,7 +3,7 @@
   <arg name="Vehicle" default="JDB"/>
   
   <!-- Rover Sync node -->
-  <node name="rover_sync" pkg="core_rover" type="rover_sync.py" output="screen"/>
+  <node name="rover_sync" pkg="core_rover" type="rover_sync.py" />
 
   <!-- Driver node -->
   <node name="driver" pkg="core_rover" type="driver" output="screen"/>
