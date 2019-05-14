@@ -8,11 +8,6 @@
     <param name="def_steer_limit" value="0.3"/>
   </node>
 
-  <!-- Radio Monitor -->
-  <include file="$(find nova_common)/launch/radio.launch"> 
-    <arg name="pkg_name" value="base_station"/>
-  </include>
-
   <!-- Input Node (xbox controller interface) -->
   <node name="xbox_input" pkg="base_station" type="xbox_input" output="screen"/>
   

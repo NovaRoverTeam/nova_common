@@ -1,7 +1,7 @@
 <launch>
 
   <!-- Arm node -->
-  <node name="arm" pkg="core_rover" type="arm.py"/>
+  <node name="arm" pkg="core_rover" type="arm.py" output="screen"/>
   <node name="sensors_pub" pkg="core_rover" type="sensors_pub.py" />
 
 </launch>
