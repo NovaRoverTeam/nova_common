@@ -1,17 +1,12 @@
 <launch>
 
   <arg name="Vehicle" default="JDB"/>
-
-  <!-- Radio Monitor -->
-  <include file="$(find nova_common)/launch/radio.launch"> 
-    <arg name="pkg_name" value="core_rover"/>
-  </include>
   
   <!-- Rover Sync node -->
-  <node name="rover_sync" pkg="core_rover" type="rover_sync.py" output="screen"/>
+  <node name="rover_sync" pkg="core_rover" type="rover_sync.py" />
 
   <!-- Driver node -->
-  <node name="driver" pkg="core_rover" type="driver"/>
+  <node name="driver" pkg="core_rover" type="driver" output="screen"/>
 
   <!-- Master Discovery node -->
   <node name="master_discovery_rover" pkg="master_discovery_fkie" type="master_discovery">
