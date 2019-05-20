@@ -5,5 +5,6 @@
   <include file="$(find core_rover)/launch/autonomous_localization.launch"/>
   <include file="$(find core_rover)/launch/autonomous_planning.launch"/>
   <include file="$(find core_rover)/launch/autonomous_mapping.launch"/>
+  <include file="$(find core_rover)/launch/robot_state.launch"/>
 
 </launch>
