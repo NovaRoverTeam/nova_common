@@ -58,6 +58,8 @@ add_message_files(
   RawCtrl.msg
   RPY.msg
   ApproxCompass.msg
+  TuneCmd.msg
+  EncoderData.msg
 )
 
 ## Generate services in the 'srv' folder

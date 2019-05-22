@@ -6,5 +6,10 @@
   <!-- IMU launch -->
   <include file="$(find core_rover)/launch/rtimulib_ros.launch"/> 
   
+  <!-- stereo camera launch -->
+  <include file="$(find core_rover)/launch/elp_stereo_camera.launch"/> 
 
+  <!-- lidar launch -->
+  <include file="$(find lidar_ptcloud)/launch/lidar.launch"/> 
+ 
 </launch>

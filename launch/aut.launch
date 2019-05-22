@@ -1,7 +1,8 @@
 <launch>
 
   <node name="auto_controller" pkg="core_rover" type="auto_controller.py" output="screen"/>
-
+  <node name="tennis_loc" pkg="core_rover" type="tennis_loc.py" output="screen"/>
+  
   <include file="$(find core_rover)/launch/autonomous_slam.launch"/>
   <include file="$(find core_rover)/launch/autonomous_planning.launch"/>
 

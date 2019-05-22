@@ -15,7 +15,7 @@
 
     <!-- Master Sync node -->
     <node name="master_sync_base" pkg="master_sync_fkie" type="master_sync" >
-      <rosparam param="sync_topics">['/test/topic', '/heartbeat', '/core_rover/driver/drive_cmd', '/core_rover/req_change_mode', '/core_rover/req_change_mission', '/core_rover/connect_stream', '/base_station/gimbal_cmd', '/core_rover/camera_status', '/base_station/rjs_raw_ctrl', '/base_station/ljs_raw_ctrl', '/base_station/drill_cmd','/core_rover/auto_status']</rosparam>
+      <rosparam param="sync_topics">['/test/topic', '/heartbeat', '/core_rover/driver/drive_cmd', '/core_rover/req_change_mode', '/core_rover/req_change_mission', '/core_rover/connect_stream', '/base_station/gimbal_cmd', '/core_rover/camera_status', '/base_station/rjs_raw_ctrl', '/base_station/ljs_raw_ctrl', '/base_station/drill_cmd','/core_rover/auto_status','base_station/PID_cmd']</rosparam>
     </node>
 
 </launch>

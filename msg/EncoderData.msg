@@ -1,0 +1,14 @@
+float32 talon0Velocity
+float32 talon1Velocity
+float32 talon2Velocity
+float32 talon3Velocity
+float32 talon4Velocity
+float32 talon5Velocity
+
+float32 talon0Position
+float32 talon1Position
+float32 talon2Position
+float32 talon3Position
+float32 talon4Position
+float32 talon5Position
+
