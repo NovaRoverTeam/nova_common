@@ -9,7 +9,6 @@ import signal
 import warnings # Suppressing annoying warning in paramiko
 warnings.filterwarnings("ignore", category=FutureWarning)
 
-from radio_sm import RadioStateMachine
 from nova_common.msg import RadioStatus # Import custom msg
 
 # Class representing the radio monitor
@@ -194,29 +193,12 @@ class RadioMonitor():
     return radio_msgs
 
 #--**--..--**--..--**--..--**--..--**--..--**--..--**--..--**--..--**--
-# updateStateMachine():
-#   Update the state machine with the current radio status.
-#--..--**--..--**--..--**--..--**--..--**--..--**--..--**--..--**--..--  
-def updateStateMachine(radio_sm, radio_msgs):
-
-  if   radio_msgs[0] is False and radio_msgs[1] is False: 
-    radio_sm.downBoth()
-  elif radio_msgs[0] is False and radio_msgs[1] is True:
-    radio_sm.up5()
-  elif radio_msgs[0] is True and radio_msgs[1] is False:
-    radio_sm.up9()
-  elif radio_msgs[0] is True and radio_msgs[1] is True:
-    radio_sm.upBoth()
-
-#--**--..--**--..--**--..--**--..--**--..--**--..--**--..--**--..--**--
 # main():
 #   Main function.
 #--..--**--..--**--..--**--..--**--..--**--..--**--..--**--..--**--..-- 
 def main():   
   
   radio_monitor = RadioMonitor()  
-  radio_sm = RadioStateMachine(radio_monitor.pkg_name)
-
   loop_hz = 1
   rate = rospy.Rate(loop_hz)
   
@@ -232,8 +214,7 @@ def main():
     #print radio_msgs[0]
     #print radio_msgs[1]
     
-    # Update state machine with radio status
-    updateStateMachine(radio_sm, radio_msgs)
+
 
     rate.sleep()
 
